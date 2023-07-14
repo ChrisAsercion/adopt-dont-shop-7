@@ -3,4 +3,9 @@
 <p>Address: <%= @application.address %></p>
 <p>Description: <%= @application.description %></p>
 <p>Status: <%= @application.status %></p>
-<p><% @application.pets %></p>
+<p>Pets:</p>
+<ul>
+  <% @application.pets.each do |pet| %>
+  <li><a href="<%=pets_path(pet)%>" ><%= pet.name %></li>
+  <% end %>
+</ul>

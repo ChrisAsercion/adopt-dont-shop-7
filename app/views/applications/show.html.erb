@@ -6,6 +6,6 @@
 <p>Pets:</p>
 <ul>
   <% @application.pets.each do |pet| %>
-  <li><a href="<%=pets_path(pet)%>" ><%= pet.name %></li>
+  <li><%= link_to pet.name, pets_path(pet) %></li>
   <% end %>
 </ul>

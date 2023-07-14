@@ -11,7 +11,7 @@ RSpec.describe "Application show" do
 
   it 'page has application data' do
     visit "/applications/#{@application_1.id}"
-    save_and_open_page
+    # save_and_open_page
     expect(page).to have_content("Name: Topher C.")
     expect(page).to have_content("Address: 123 sesame st. New York, NY 10001")
     expect(page).to have_content("Description: I want dog")

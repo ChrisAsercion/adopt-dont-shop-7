@@ -19,7 +19,7 @@ RSpec.describe "Application new page" do
     fill_in "Name", with: "Topher C."
     fill_in "Address", with: "123 sesame st. New York, NY 10001"
     fill_in "Description", with: "I want dog"
-    click_button("Submit Application")
+    click_button("Submit")
     # save_and_open_page
     expect(current_path).to eq("/applications/#{Application.last.id}")
     expect(page).to have_content("Topher C.")
@@ -30,7 +30,7 @@ RSpec.describe "Application new page" do
 
   it 'returns to itself if not all fields are filled in' do
     visit "/applications/new"
-    click_button("Submit Application")
+    click_button("Submit")
     # save_and_open_page
     expect(current_path).to eq("/applications/new")
     expect(page).to have_content("Name can't be blank, Address can't be blank, Description can't be blank")

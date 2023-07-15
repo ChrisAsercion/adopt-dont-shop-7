@@ -32,5 +32,7 @@ RSpec.describe "Application show" do
     expect(current_path).to eq("/applications/#{@application_1.id}")
     click_button("Adopt this Pet")
     save_and_open_page
+    expect(current_path).to eq("/applications/#{@application_1.id}")
+    expect(page).to have_link("Scooby")
   end
 end

@@ -11,11 +11,18 @@
   <% end %>
 </ul>
 
-<h3>Add a Pet to this Application</h3>
-<%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
-  <%= f.label :search %>
-  <%= f.text_field :search %>
-  <%= f.submit "Search" %>
+<% if @application.status == "In Progress" %>
+  <h3>Add a Pet to this Application</h3>
+  <%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
+    <%= f.label :search %>
+    <%= f.text_field :search %>
+    <%= f.submit "Search" %>
+  <% end %>
+<% end %>
+
+<% if @application.pets.count >= 1 %>
+  <%binding.pry%>
+  <%= button_to "Submit this Application", "/applications/#{@application.id}", method: :patch, params: { application: { status: "Pending" } } %>
 <% end %>
 
 <% if @search_results.present? %>

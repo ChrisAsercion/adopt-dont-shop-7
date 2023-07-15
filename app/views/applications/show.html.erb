@@ -23,7 +23,7 @@
   <ul>
     <% @search_results.each do |pet| %>
       <li><%= pet.name %></li>
-      <%= button_to "Adopt this Pet", "/applications/#{@application.id}", method: :patch, params: pet %>
+      <%= button_to "Adopt this Pet", "/applications/#{@application.id}/pets/#{@pet.id}", method: :post, params: {application_id: application.id, pet_id: pet.id} %>
     <% end %>
   </ul>
 <% end %>

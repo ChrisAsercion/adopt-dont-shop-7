@@ -19,7 +19,7 @@ RSpec.describe "Application show" do
     expect(page).to have_content("Status: Accepted")
     expect(page).to have_link("Scooby")
   end
-  # User Story 4
+  # User Story 4 & 5
   it 'page has pets search form' do
     visit "/applications/#{@application_1.id}"
     
@@ -30,5 +30,7 @@ RSpec.describe "Application show" do
     # save_and_open_page
     expect(page).to have_content("Scooby")
     expect(current_path).to eq("/applications/#{@application_1.id}")
+    click_button("Adopt this Pet")
+    save_and_open_page
   end
 end

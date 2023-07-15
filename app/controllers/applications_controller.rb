@@ -1,10 +1,10 @@
 class ApplicationsController < ApplicationController
   def show
     @application = Application.find(params[:id])
+    @search_results = params[:search].present? ? Pet.search(params[:search]) : nil
   end
 
   def new
-
   end
 
   def create
@@ -31,6 +31,12 @@ class ApplicationsController < ApplicationController
       redirect_to "/applications/#{application.id}/edit"
     end
   end
+
+  def search_pets
+    @application = Application.find(params[:id])
+    @search_results = Pet.search(params[:search])
+  end
+
 
   private
 

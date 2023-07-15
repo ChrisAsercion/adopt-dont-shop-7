@@ -21,8 +21,7 @@
 <% end %>
 
 <% if @application.pets.count >= 1 %>
-  <%binding.pry%>
-  <%= button_to "Submit this Application", "/applications/#{@application.id}", method: :patch, params: { application: { status: "Pending" } } %>
+  <%= button_to "Submit this Application", "/applications/#{@application.id}", method: :patch, params: { status: "Pending" } %>
 <% end %>
 
 <% if @search_results.present? %>

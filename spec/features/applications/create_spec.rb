@@ -13,7 +13,7 @@ RSpec.describe "Application new page" do
     # save_and_open_page
     expect(current_path).to eq("/applications/new")
   end
-
+  # User Story 2
   it 'can create a new applications' do
     visit "/applications/new"
     fill_in "Name", with: "Topher C."
@@ -27,7 +27,7 @@ RSpec.describe "Application new page" do
     expect(page).to have_content("I want dog")
     expect(page).to have_content("In Progress")
   end
-
+  # User Story 3
   it 'returns to itself if not all fields are filled in' do
     visit "/applications/new"
     click_button("Submit")

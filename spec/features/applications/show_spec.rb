@@ -22,7 +22,7 @@ RSpec.describe "Application show" do
   # User Story 4 & 5 & 7
   it 'page has pets search form' do
     visit "/applications/#{@application_1.id}"
-    # save_and_open_page
+    save_and_open_page
     expect(page).to have_content("Add a Pet to this Application")
     expect(page).to have_field("Search")
     expect(page).to_not have_button("Submit this Application")
@@ -43,7 +43,7 @@ RSpec.describe "Application show" do
     visit "/applications/#{@application_1.id}"
     expect(page).to have_button("Submit this Application")
     click_on "Submit this Application"
-    save_and_open_page
+    # save_and_open_page
     expect(page).to have_content("Status: Pending")
     expect(page).to have_link("Scooby")
     expect(page).to_not have_content("Add a Pet to this Application")

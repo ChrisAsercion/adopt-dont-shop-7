@@ -4,6 +4,10 @@
 <p>Description: <%= @application.description %></p>
 <p>Status: <%= @application.status %></p>
 
+<% if @application.pets.count >= 1 %>
+  <%= button_to "Submit this Application", "/applications/#{@application.id}", method: :patch, params: { status: "Pending" } %>
+<% end %>
+
 <p>Pets:</p>
 <ul>
   <% @application.pets.each do |pet| %>
@@ -20,9 +24,6 @@
   <% end %>
 <% end %>
 
-<% if @application.pets.count >= 1 %>
-  <%= button_to "Submit this Application", "/applications/#{@application.id}", method: :patch, params: { status: "Pending" } %>
-<% end %>
 
 <% if @search_results.present? %>
   <h3>Search Results</h3>

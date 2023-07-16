@@ -27,10 +27,12 @@
 
 <% if @search_results.present? %>
   <h3>Search Results</h3>
-  <ul>
+  <ul id="search-results">
     <% @search_results.each do |pet| %>
-      <li><%= pet.name %></li>
-      <%= button_to "Adopt this Pet", "/applications/#{@application.id}/pets/#{pet.id}", method: :post, params: {application_id: @application.id, pet_id: pet.id} %>
+      <li>
+        <% pet.name %>
+        <%= button_to "Adopt #{pet.name}", "/applications/#{@application.id}/pets/#{pet.id}", method: :post, params: {application_id: @application.id, pet_id: pet.id} %>
+      </li>
     <% end %>
   </ul>
 <% end %>

@@ -45,7 +45,7 @@ RSpec.describe "Application show" do
   it 'page has submit button' do
     @application_1.pets << @pet
     visit "/applications/#{@application_1.id}"
-    save_and_open_page
+    # save_and_open_page
     fill_in("Descriptio", with: "Im a good boy")
     click_on "Submit"
     expect(page).to have_button("Submit this Application")

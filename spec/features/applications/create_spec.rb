@@ -19,7 +19,7 @@ RSpec.describe "Application new page" do
     fill_in "Name", with: "Topher C."
     fill_in "Address", with: "123 sesame st. New York, NY 10001"
     click_button("Submit")
-    save_and_open_page
+    # save_and_open_page
     expect(current_path).to eq("/applications/#{Application.last.id}")
     expect(page).to have_content("Topher C.")
     expect(page).to have_content("123 sesame st. New York, NY 10001")

@@ -17,5 +17,5 @@ Shelter.destroy_all
 @pet2 = Pet.create!(name: "Scrappy", age: 1, breed: "Great Dane", adoptable: true, shelter_id: @shelter.id)
 @pet3 = Pet.create!(name: "Scoobydoo", age: 3, breed: "Great Dane", adoptable: true, shelter_id: @shelter.id)
 
-@application_1 = Application.create!(name: "Topher C.", address: "123 sesame st. New York, NY 10001", status: "In progress")
+@application_1 = Application.create!(name: "Topher C.", street_address: "123 sesame st.",  city:  "New York", state: "NY", zip: "10001", status: "In progress")
 @application_1.pets << @pet

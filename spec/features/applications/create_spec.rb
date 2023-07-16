@@ -13,26 +13,24 @@ RSpec.describe "Application new page" do
     # save_and_open_page
     expect(current_path).to eq("/applications/new")
   end
-
+  # User Story 2
   it 'can create a new applications' do
     visit "/applications/new"
     fill_in "Name", with: "Topher C."
     fill_in "Address", with: "123 sesame st. New York, NY 10001"
-    fill_in "Description", with: "I want dog"
     click_button("Submit")
-    # save_and_open_page
+    save_and_open_page
     expect(current_path).to eq("/applications/#{Application.last.id}")
     expect(page).to have_content("Topher C.")
     expect(page).to have_content("123 sesame st. New York, NY 10001")
-    expect(page).to have_content("I want dog")
     expect(page).to have_content("In Progress")
   end
-
+  # User Story 3
   it 'returns to itself if not all fields are filled in' do
     visit "/applications/new"
     click_button("Submit")
     # save_and_open_page
     expect(current_path).to eq("/applications/new")
-    expect(page).to have_content("Name can't be blank, Address can't be blank, Description can't be blank")
+    expect(page).to have_content("Name can't be blank, Address can't be blank")
   end
 end

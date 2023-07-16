@@ -18,9 +18,9 @@ class ApplicationsController < ApplicationController
     end
   end
 
-  def edit
-    @application = Application.find(params[:id])
-  end
+  # def edit
+  #   @application = Application.find(params[:id])
+  # end
 
   def update
     application = Application.find(params[:id])
@@ -31,12 +31,6 @@ class ApplicationsController < ApplicationController
       redirect_to "/applications/#{application.id}/edit"
     end
   end
-
-  def search_pets
-    @application = Application.find(params[:id])
-    @search_results = Pet.search(params[:search])
-  end
-
 
   private
 

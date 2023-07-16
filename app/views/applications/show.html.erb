@@ -4,6 +4,10 @@
 <p>Description: <%= @application.description %></p>
 <p>Status: <%= @application.status %></p>
 
+<% if @application.pets.count >= 1 && @application.description.present? %>
+  <%= button_to "Submit this Application", "/applications/#{@application.id}", method: :patch, params: { status: "Pending" } %>
+<% end %>
+
 <p>Pets:</p>
 <ul>
   <% @application.pets.each do |pet| %>
@@ -11,19 +15,30 @@
   <% end %>
 </ul>
 
-<h3>Add a Pet to this Application</h3>
-<%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
-  <%= f.label :search %>
-  <%= f.text_field :search %>
-  <%= f.submit "Search" %>
+<% if @application.status == "In Progress" %>
+  <h3>Why would you make a good owner?</h3>
+  <%= form_with url: "/applications/#{@application.id}", method: :patch, local: true do |f| %>
+    <%= f.label :description %>
+    <%= f.text_area :description %><br>
+    <%= f.submit "Submit" %>
+  <% end %>
+  <h3>Add a Pet to this Application</h3>
+  <%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
+    <%= f.label :search %>
+    <%= f.text_field :search %>
+    <%= f.submit "Search" %>
+  <% end %>
 <% end %>
+
 
 <% if @search_results.present? %>
   <h3>Search Results</h3>
-  <ul>
+  <ul id="search-results">
     <% @search_results.each do |pet| %>
-      <li><%= pet.name %></li>
-      <%= button_to "Adopt this Pet", "/applications/#{@application.id}/pets/#{pet.id}", method: :post, params: {application_id: @application.id, pet_id: pet.id} %>
+      <li>
+        <% pet.name %>
+        <%= button_to "Adopt #{pet.name}", "/applications/#{@application.id}/pets/#{pet.id}", method: :post, params: {application_id: @application.id, pet_id: pet.id} %>
+      </li>
     <% end %>
   </ul>
 <% end %>

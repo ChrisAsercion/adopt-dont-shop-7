@@ -1,11 +1,23 @@
 <h1>Application</h1>
 <p>Name: <%= @application.name %></p>
-<p>Address: <%= @application.address %></p>
+<p>Street Address: <%= @application.street_address %></p>
+<p>City: <%= @application.city %></p>
+<p>State: <%= @application.state %></p>
+<p>Zip Code: <%= @application.zip %></p>
 <p>Description: <%= @application.description %></p>
+<p>Petscription: <%= @application.petscription %></p>
 <p>Status: <%= @application.status %></p>
 
-<% if @application.pets.count >= 1 && @application.description.present? %>
-  <%= button_to "Submit this Application", "/applications/#{@application.id}", method: :patch, params: { status: "Pending" } %>
+<% if @application.pets.count >= 1 && @application.status == "In Progress" %>
+  <%= form_with url: "/applications/#{@application.id}", method: :patch, id: 'petscription-form' do |f| %>
+  <h3>Why I would make a good owner for these pet(s):</h3>
+  <% f.label :petscription %>
+  <%= f.text_area :petscription %>
+  <%= f.hidden_field :status, value: 'Pending' %>
+  <p>Submit this Application: <%= f.submit "Submit"%></p>
+  </form>
+<% end %>
+
 <% end %>
 
 <p>Pets:</p>
@@ -16,14 +28,8 @@
 </ul>
 
 <% if @application.status == "In Progress" %>
-  <h3>Why would you make a good owner?</h3>
-  <%= form_with url: "/applications/#{@application.id}", method: :patch, local: true do |f| %>
-    <%= f.label :description %>
-    <%= f.text_area :description %><br>
-    <%= f.submit "Submit" %>
-  <% end %>
   <h3>Add a Pet to this Application</h3>
-  <%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
+  <%= form_with url: "/applications/#{@application.id}", method: :get, local: true, id: 'add-pet-form' do |f| %>
     <%= f.label :search %>
     <%= f.text_field :search %>
     <%= f.submit "Search" %>

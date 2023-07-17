@@ -5,14 +5,18 @@
 <p>State: <%= @application.state %></p>
 <p>Zip Code: <%= @application.zip %></p>
 <p>Description: <%= @application.description %></p>
+<p>Petscription: <%= @application.petscription %></p>
 <p>Status: <%= @application.status %></p>
 
 <% if @application.pets.count >= 1#this is probably AR%>
-  <%= form_with url: "/applications/#{@application.id}", method: :patch, local: true do |f| %>
-  <p>Why I would make a good owner for these pet(s): <% f.label :petscription %><%= f.text_field :petscription %></p>
-  <p>Submit this Application:     <%= f.submit "Submit"%></p>
+  <%= form_with url: "/applications/#{@application.id}", method: :patch, id: 'petscription-form' do |f| %>
+  <h3>Why I would make a good owner for these pet(s):</h3>
+  <%= f.label :petscription %>
+  <%= f.text_field :petscription %>
+  <%= f.hidden_field :status, value: 'Pending' %>
+  <p>Submit this Application: <%= f.submit "Submit"%></p>
   </form>
-  <% end %>
+<% end %>
 
 <% end %>
 
@@ -25,7 +29,7 @@
 
 <% if @application.status == "In Progress" %>
   <h3>Add a Pet to this Application</h3>
-  <%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
+  <%= form_with url: "/applications/#{@application.id}", method: :get, local: true, id: 'add-pet-form' do |f| %>
     <%= f.label :search %>
     <%= f.text_field :search %>
     <%= f.submit "Search" %>

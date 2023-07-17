@@ -49,13 +49,13 @@ RSpec.describe "Application show" do
   it 'page has submit button' do
     @application_1.pets << @pet
     visit "/applications/#{@application_1.id}"
-    fill_in("petscription", with: "I have plenty of Scooby snacks for Scooby")
+    within('#petscription-form') do
+      fill_in("petscription", with: "I have plenty of Scooby snacks for Scooby")
+    end
     expect(page).to have_button("Submit")
-    save_and_open_page
     click_on "Submit"
-    
     # save_and_open_page
-    require 'pry'; binding.pry
+    expect(page).to have_content("Petscription: I have plenty of Scooby snacks for Scooby")
     expect(page).to have_content("Status: Pending")
     expect(page).to have_link("Scooby")
     expect(page).to_not have_content("Add a Pet to this Application")

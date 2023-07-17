@@ -8,6 +8,7 @@ RSpec.describe 'Admin Shelter Show Page' do
     @shelter4 = Shelter.create!(name: "Cat Pound", city: "Culver CA", foster_program: false, rank: 12)
   end
 
+  # User Story 10
   it 'displays all shelter names in reversed alphabetical order' do
     visit "/admin/shelters"
     # save_and_open_page

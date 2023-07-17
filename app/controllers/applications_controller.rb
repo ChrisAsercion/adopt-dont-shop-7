@@ -1,6 +1,7 @@
 class ApplicationsController < ApplicationController
   def show
     @application = Application.find(params[:id])
+    @has_pets = @application.pets.count >= 1
     @search_results = params[:search].present? ? Pet.search(params[:search]) : nil
   end
 

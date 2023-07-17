@@ -13,11 +13,4 @@ class Pet < ApplicationRecord
     where(adoptable: true)
   end
 
-  # def self.search(query)
-  #   if query.present?
-  #     where("name ILIKE ?", "%#{query}%")
-  #   else
-  #     all
-  #   end
-  # end
 end

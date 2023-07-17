@@ -9,8 +9,8 @@
 
 <% if @application.pets.count >= 1#this is probably AR%>
   <%= form_with url: "/applications/#{@application.id}", method: :patch, local: true do |f| %>
-  <p>Why I would make a good owner for these pet(s)<%= f.text_field :petscription %></p>
-  <p>Submit this Application:     <%= f.submit%></p>
+  <p>Why I would make a good owner for these pet(s): <% f.label :petscription %><%= f.text_field :petscription %></p>
+  <p>Submit this Application:     <%= f.submit "Submit"%></p>
   </form>
   <% end %>
 

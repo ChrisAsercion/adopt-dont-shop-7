@@ -7,7 +7,7 @@ RSpec.describe "Application show" do
     @pet2 = Pet.create!(name: "Scrappy", age: 1, breed: "Great Dane", adoptable: true, shelter_id: @shelter.id)
     @pet3 = Pet.create!(name: "Scoobydoo", age: 3, breed: "Great Dane", adoptable: true, shelter_id: @shelter.id)
     @pet4 = Pet.create!(name: "Mr. Scooby", age: 4, breed: "Great Dane", adoptable: true, shelter_id: @shelter.id)
-    @application_1 = Application.create!(name: "Topher B.", street_address: "101 W. East St.", city: "Los Angeles", state: "CA", zip: "90210", description: "I have home", petsciption: "", status: "In Progress")
+    @application_1 = Application.create!(name: "Topher B.", street_address: "101 W. East St.", city: "Los Angeles", state: "CA", zip: "90210", description: "I have home", petscription: "", status: "In Progress")
   end
 
   # User Story 1
@@ -49,12 +49,13 @@ RSpec.describe "Application show" do
   it 'page has submit button' do
     @application_1.pets << @pet
     visit "/applications/#{@application_1.id}"
-    save_and_open_page
     fill_in("petscription", with: "I have plenty of Scooby snacks for Scooby")
-    expect(page).to have_button("Save")
-    click_on "Save"
-    require 'pry'; binding.pry
+    expect(page).to have_button("Submit")
+    save_and_open_page
+    click_on "Submit"
+    
     # save_and_open_page
+    require 'pry'; binding.pry
     expect(page).to have_content("Status: Pending")
     expect(page).to have_link("Scooby")
     expect(page).to_not have_content("Add a Pet to this Application")

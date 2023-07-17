@@ -7,8 +7,14 @@
 <p>Description: <%= @application.description %></p>
 <p>Status: <%= @application.status %></p>
 
-<% if @application.pets.count >= 1 && @application.description.present? %>
-  <%= button_to "Submit this Application", "/applications/#{@application.id}", method: :patch, params: { status: "Pending" } %>
+<% if @application.pets.count >= 1 %>
+  <%= form_with url: "/applications/#{@application.id}", submit: 'Submit this Application', method: :patch, local: true do |f| %>
+  <p>Why I would make a good owner for these pet(s)<%= f.text_field :petscription %></p>
+  <%= f.submit %>
+  </form>
+  <% end %>
+  <%= button_to "Submit this Application", "/applications/#{@application.id}", method: :patch %>
+
 <% end %>
 
 <p>Pets:</p>

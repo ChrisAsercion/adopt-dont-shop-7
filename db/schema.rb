@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_211934) do
     t.string "state"
     t.string "zip"
     t.string "description"
+    t.string "petsciption"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

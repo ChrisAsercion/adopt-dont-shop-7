@@ -7,13 +7,12 @@
 <p>Description: <%= @application.description %></p>
 <p>Status: <%= @application.status %></p>
 
-<% if @application.pets.count >= 1 %>
-  <%= form_with url: "/applications/#{@application.id}", submit: 'Submit this Application', method: :patch, local: true do |f| %>
+<% if @application.pets.count >= 1#this is probably AR%>
+  <%= form_with url: "/applications/#{@application.id}", method: :patch, local: true do |f| %>
   <p>Why I would make a good owner for these pet(s)<%= f.text_field :petscription %></p>
-  <%= f.submit %>
+  <p>Submit this Application:     <%= f.submit%></p>
   </form>
   <% end %>
-  <%= button_to "Submit this Application", "/applications/#{@application.id}", method: :patch %>
 
 <% end %>
 

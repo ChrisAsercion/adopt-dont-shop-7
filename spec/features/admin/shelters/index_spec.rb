@@ -10,7 +10,7 @@ RSpec.describe 'Admin Shelter Show Page' do
 
   it 'displays all shelter names in reversed alphabetical order' do
     visit "/admin/shelters"
-    save_and_open_page
+    # save_and_open_page
     expect(page).to have_http_status(:success)
 
     shelters = Shelter.order(name: :desc)

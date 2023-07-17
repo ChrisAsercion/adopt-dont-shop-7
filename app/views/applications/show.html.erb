@@ -8,11 +8,11 @@
 <p>Petscription: <%= @application.petscription %></p>
 <p>Status: <%= @application.status %></p>
 
-<% if @application.pets.count >= 1#this is probably AR%>
+<% if @application.pets.count >= 1 && @application.status == "In Progress" %>
   <%= form_with url: "/applications/#{@application.id}", method: :patch, id: 'petscription-form' do |f| %>
   <h3>Why I would make a good owner for these pet(s):</h3>
-  <%= f.label :petscription %>
-  <%= f.text_field :petscription %>
+  <% f.label :petscription %>
+  <%= f.text_area :petscription %>
   <%= f.hidden_field :status, value: 'Pending' %>
   <p>Submit this Application: <%= f.submit "Submit"%></p>
   </form>

@@ -28,7 +28,7 @@ RSpec.describe 'Admin Shelter Show Page' do
   it "displays a section for 'Shelters with Pending Applications'" do
     visit "/admin/shelters"
     @application_1.status = "Pending"
-    require 'pry'; binding.pry
+    # save_and_open_page
     shelters = Shelter.select(status: "Pending")
     expect(page).to have_content("Shelters with Pending Applications")
     

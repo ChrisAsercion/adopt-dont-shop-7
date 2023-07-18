@@ -1,10 +1,9 @@
 require "rails_helper"
 
 RSpec.describe "Application new page" do
-  before :each do
-    @shelter = Shelter.create!(name: "Mystery Building", city: "Irvine CA", foster_program: false, rank: 9)
-    @pet = Pet.create!(name: "Scooby", age: 2, breed: "Great Dane", adoptable: true, shelter_id: @shelter.id)
-  end
+  let!(:shelter) {create(:shelter, rank: 5) }
+  let!(:pet) {Pet.create!(name: "Scooby", age: 2, breed: "Great Dane", adoptable: true, shelter_id: shelter.id)}
+  
 
   it 'links from pet index page' do
     visit "/pets"

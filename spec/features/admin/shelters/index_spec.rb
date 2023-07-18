@@ -7,8 +7,7 @@ RSpec.describe 'Admin Shelter Show Page' do
     @shelter3 = Shelter.create!(name: "Dog Pound", city: "San Francisco CA", foster_program: false, rank: 11)
     @shelter4 = Shelter.create!(name: "Cat Pound", city: "Culver CA", foster_program: false, rank: 12)
     @application_1 = Application.create!(name: "Topher C.", street_address: "103 W. East St.", city: "Los Angeles", state: "CA", zip: "90210", description: "I have home", petscription: "", status: "In Progress")
-    @pet = Pet.create!(name: "Scooby", age: 2, breed: "Great Dane", adoptable: true, shelter_id: @shelter.id)
-
+    
   end
 #When I visit the admin shelter index
 
@@ -28,9 +27,10 @@ RSpec.describe 'Admin Shelter Show Page' do
   #User Story 11
   it "displays a section for 'Shelters with Pending Applications'" do
     visit "/admin/shelters"
-    @application_1.pets << @pet
+    @application_1.status = "Pending"
     require 'pry'; binding.pry
     shelters = Shelter.select(status: "Pending")
+    expect(page).to have_content("Shelters with Pending Applications")
     
   end
 end

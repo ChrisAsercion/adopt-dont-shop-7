@@ -23,7 +23,7 @@
 <p>Pets:</p>
 <ul>
   <% @application.pets.each do |pet| %>
-  <li><%= link_to pet.name, pets_path(pet) %></li>
+  <li><%= link_to pet.name, "/pets/#{pet.id}" %></li>
   <% end %>
 </ul>
 

@@ -6,7 +6,11 @@ RSpec.describe 'Admin Shelter Show Page' do
     @shelter2 = Shelter.create!(name: "Pets Galore", city: "Sacramento CA", foster_program: false, rank: 10)
     @shelter3 = Shelter.create!(name: "Dog Pound", city: "San Francisco CA", foster_program: false, rank: 11)
     @shelter4 = Shelter.create!(name: "Cat Pound", city: "Culver CA", foster_program: false, rank: 12)
+    @application_1 = Application.create!(name: "Topher C.", street_address: "103 W. East St.", city: "Los Angeles", state: "CA", zip: "90210", description: "I have home", petscription: "", status: "In Progress")
+    @pet = Pet.create!(name: "Scooby", age: 2, breed: "Great Dane", adoptable: true, shelter_id: @shelter.id)
+
   end
+#When I visit the admin shelter index
 
   # User Story 10
   it 'displays all shelter names in reversed alphabetical order' do
@@ -19,5 +23,14 @@ RSpec.describe 'Admin Shelter Show Page' do
       expect(page.body).to include(shelter.name)
       expect(page.body.index(shelter.name)).to be < page.body.index(shelters[index + 1].name) unless index == shelters.size - 1
     end
+  end
+
+  #User Story 11
+  it "displays a section for 'Shelters with Pending Applications'" do
+    visit "/admin/shelters"
+    @application_1.pets << @pet
+    require 'pry'; binding.pry
+    shelters = Shelter.select(status: "Pending")
+    
   end
 end

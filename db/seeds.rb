@@ -11,19 +11,19 @@ Pet.destroy_all
 Application.destroy_all
 Shelter.destroy_all
 
-@shelter = Shelter.create!(name: "Mystery Building", city: "Irvine CA", foster_program: false, rank: 9)
+@shelter1 = Shelter.create!(name: "Mystery Building", city: "Irvine CA", foster_program: false, rank: 9)
 @shelter2 = Shelter.create!(name: "Pets Galore", city: "Sacramento CA", foster_program: false, rank: 10)
 @shelter3 = Shelter.create!(name: "Dog Pound", city: "San Francisco CA", foster_program: false, rank: 11)
 @shelter4 = Shelter.create!(name: "Cat Pound", city: "Culver CA", foster_program: false, rank: 12)
 
-@pet = Pet.create!(name: "Scooby", age: 2, breed: "Great Dane", adoptable: true, shelter_id: @shelter.id)
+@pet1 = Pet.create!(name: "Scooby", age: 2, breed: "Great Dane", adoptable: true, shelter_id: @shelter.id)
 @pet2 = Pet.create!(name: "Scrappy", age: 1, breed: "Great Dane", adoptable: true, shelter_id: @shelter.id)
 @pet3 = Pet.create!(name: "Scoobydoo", age: 3, breed: "Great Dane", adoptable: true, shelter_id: @shelter.id)
 @pet4 = Pet.create!(name: "Mr. Scooby", age: 4, breed: "Great Dane", adoptable: true, shelter_id: @shelter.id)
 
-@application_1 = Application.create!(name: "Topher C.", street_address: "123 sesame st.",  city:  "New York", state: "NY", zip: "10001", description: "I have a nice home", petscription: "", status: "In progress")
-@application_2 = Application.create!(name: "Topher B.", street_address: "101 W. East St.", city: "Los Angeles", state: "CA", zip: "90210", description: "I have home", petscription: "", status: "In Progress")
+@application1 = Application.create!(name: "Topher C.", street_address: "123 sesame st.",  city:  "New York", state: "NY", zip: "10001", description: "I have a nice home", petscription: "", status: "In progress")
+@application2 = Application.create!(name: "Topher B.", street_address: "101 W. East St.", city: "Los Angeles", state: "CA", zip: "90210", description: "I have home", petscription: "", status: "In Progress")
 
-@application_1.pets << @pet
-@application_1.pets << @pet2
-@applications_2.pets << @pet2
+@application1.pets << @pet
+@application1.pets << @pet2
+@applications2.pets << @pet2

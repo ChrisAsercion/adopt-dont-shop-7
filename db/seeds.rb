@@ -26,4 +26,4 @@ Shelter.destroy_all
 
 @application1.pets << @pet1
 @application1.pets << @pet2
-@applications2.pets << @pet2
+@application2.pets << @pet2

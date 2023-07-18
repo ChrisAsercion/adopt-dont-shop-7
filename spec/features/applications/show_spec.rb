@@ -59,6 +59,7 @@ RSpec.describe "Application show" do
     expect(page).to have_button("Submit")
     click_on "Submit"
     # save_and_open_page
+    expect(current_path).to eq("/applications/#{@application_1.id}")
     expect(page).to have_content("Petscription: I have plenty of Scooby snacks for Scooby")
     expect(page).to have_content("Status: Pending")
     expect(page).to have_link("Scooby")
@@ -72,6 +73,7 @@ RSpec.describe "Application show" do
     fill_in("Search", with: "Scoob")
     click_on "Search"
     # save_and_open_page
+    expect(current_path).to eq("/applications/#{@application_1.id}")
     expect(page).to have_button("Adopt Scooby")
     expect(page).to have_button("Adopt Scoobydoo")
     expect(page).to have_button("Adopt Mr. Scooby")
@@ -84,9 +86,23 @@ RSpec.describe "Application show" do
     fill_in("Search", with: "OOb")
     click_on "Search"
     # save_and_open_page
+    expect(current_path).to eq("/applications/#{@application_1.id}")
     expect(page).to have_button("Adopt Scooby")
     expect(page).to have_button("Adopt Scoobydoo")
     expect(page).to have_button("Adopt Mr. Scooby")
     expect(page).to_not have_button("Adopt Scrappy")
+  end
+
+  it 'page pets links route to pets show page' do
+    @application_1.pets << @pet
+    @application_1.pets << @pet2
+    visit "/applications/#{@application_1.id}"
+    click_link "Scooby"
+    # save_and_open_page
+    expect(current_path).to eq("/pets/#{@pet.id}")
+    visit "/applications/#{@application_1.id}"
+    click_link "Scrappy"
+    # save_and_open_page
+    expect(current_path).to eq("/pets/#{@pet2.id}")
   end
 end

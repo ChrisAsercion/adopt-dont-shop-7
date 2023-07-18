@@ -1,3 +1,10 @@
+<section>
+  <h2>Shelters with Pending Applications:</h2>
+  <% @has_pending.each do |shelter| %>
+    <%= shelter.name %>
+    <% button_to "#{shelter.name} Pending Application(s)", "/admin/applications", method: :get %>
+  <% end %>
+</section>
 <h1>All Shelters</h1>
 
 <% @shelters.each do |shelter| %>

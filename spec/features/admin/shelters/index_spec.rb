@@ -28,8 +28,12 @@ RSpec.describe 'Admin Shelter Show Page' do
   #User Story 11
   it "displays a section for 'Shelters with Pending Applications'" do
     visit "/admin/shelters"
-    # save_and_open_page
+    #save_and_open_page
     expect(page).to have_content("Shelters with Pending Applications:")
-    expect(page).to have_button("Mystery Building Pending Application(s)")
+    expect(page).to have_content("Mystery Building")
+    #expect(page).to have_button("Mystery Building Pending Application(s)")
+    #On reading through the user story, no button is needed
+    #Each section should just have a list of Pending Applications
+    #This list should display every application associtated with that shelter.
   end
 end

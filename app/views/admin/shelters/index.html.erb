@@ -1,7 +1,8 @@
 <section>
   <h2>Shelters with Pending Applications:</h2>
   <% @has_pending.each do |shelter| %>
-    <%= button_to "#{shelter.name} Pending Application(s)", "/admin/applications", method: :get %>
+    <%= shelter.name %>
+    <% button_to "#{shelter.name} Pending Application(s)", "/admin/applications", method: :get %>
   <% end %>
 </section>
 <h1>All Shelters</h1>

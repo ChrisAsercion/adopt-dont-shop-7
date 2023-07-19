@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe "Application new page" do
-  let!(:shelter) {create(:shelter, rank: 5) }
-  let!(:pet) {Pet.create!(name: "Scooby", age: 2, breed: "Great Dane", adoptable: true, shelter_id: shelter.id)}
+  let!(:shelter) {create(:shelter) }
+  let!(:pet) {create(:pet)}
   
 
   it 'links from pet index page' do

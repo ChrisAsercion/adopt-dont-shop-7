@@ -9,7 +9,6 @@ class CreateApplications < ActiveRecord::Migration[7.0]
       t.string :description
       t.string :petscription
       t.string :status
-
       t.timestamps
     end
   end

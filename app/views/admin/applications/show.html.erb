@@ -1,20 +1,17 @@
 <h3><%= @application.name %></h3>
 <p><%= @application.petscription%></p>
 
-<% @approved_pets.each do |pet| %>
-  <div id="approved-pet-<%= pet.id %>">
-    <%= pet.name %><span>Approved</span>
-  </div>
-<% end %>
-<% @rejected_pets.each do |pet| %>
-  <div id="rejected-pet-<%= pet.id %>">
-    <%= pet.name %><span>Rejected</span>
-  </div>
-<% end %>
-<% @pending_pets.each do |pet| %>
-  <div id="pending-pet-<%= pet.id %>">
-    <%= pet.name %>
-    <%= button_to "Approve", "/admin/applications/#{@application.id}/approve" %>
-    <%= button_to "Reject", "/admin/applications/#{@application.id}/reject" %>
+<% @pets.each do |pet| %>
+  <% pet_id, pet_name, pet_status %>
+  <div id="pet-<%= pet_id %>">
+    <%= pet_name %>
+    <% if pet_status == 'Approved' %>
+      <span>Approved</span>
+    <% elsif pet_status == 'Rejected' %>
+      <span>Rejected</span>
+    <% else %>
+      <%= button_to "Approve", approve_admin_application_pet_path(@application, pet_id), method: :patch %>
+      <%= button_to "Reject", reject_admin_application_pet_path(@application, pet_id), method: :patch %>
+    <% end %>
   </div>
 <% end %>

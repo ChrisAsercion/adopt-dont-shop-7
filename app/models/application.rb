@@ -4,4 +4,8 @@ class Application < ApplicationRecord
 
   validates :name, :street_address, :city, :state, :zip, :description, presence: true
   attribute :petscription, :string
+
+  def pets_with_status
+    
+  end
 end 

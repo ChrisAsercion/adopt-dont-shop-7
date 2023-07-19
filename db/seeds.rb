@@ -20,10 +20,13 @@ Shelter.destroy_all
 @pet2 = Pet.create!(name: "Scrappy", age: 1, breed: "Great Dane", adoptable: true, shelter_id: @shelter1.id)
 @pet3 = Pet.create!(name: "Scoobydoo", age: 3, breed: "Great Dane", adoptable: true, shelter_id: @shelter2.id)
 @pet4 = Pet.create!(name: "Mr. Scooby", age: 4, breed: "Great Dane", adoptable: true, shelter_id: @shelter3.id)
+@pet5 = Pet.create!(name: "Scrappydoo", age: 5, breed: "Great Dane", adoptable: true, shelter_id: @shelter4.id)
+
 
 @application1 = Application.create!(name: "Topher C.", street_address: "123 sesame st.",  city:  "New York", state: "NY", zip: "10001", description: "I have a nice home", petscription: "", status: "In progress")
 @application2 = Application.create!(name: "Topher B.", street_address: "101 W. East St.", city: "Los Angeles", state: "CA", zip: "90210", description: "I have home", petscription: "", status: "In Progress")
 
-@application1.pets << @pet1
-@application1.pets << @pet2
-@application2.pets << @pet2
+PetApplication.create!(pet_id: @pet1.id, application_id: @application1.id)
+PetApplication.create!(pet_id: @pet2.id, application_id: @application1.id)
+PetApplication.create!(pet_id: @pet2.id, application_id: @application2.id)
+PetApplication.create!(pet_id: @pet3.id, application_id: @application2.id)

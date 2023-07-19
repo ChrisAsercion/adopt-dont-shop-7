@@ -25,6 +25,10 @@ Shelter.destroy_all
 @application2 = Application.create!(name: "Topher B.", street_address: "101 W. East St.", city: "Los Angeles", state: "CA", zip: "90210", description: "I have home", petscription: "", status: "In Progress")
 
 #Join table
-@application1.pets << @pet1
-@application1.pets << @pet2
-@application2.pets << @pet2
+PetApplication.create!(pet_id: @pet1.id, application_id: @application1.id)
+PetApplication.create!(pet_id: @pet2.id, application_id: @application1.id)
+PetApplication.create!(pet_id: @pet2.id, application_id: @application2.id)
+PetApplication.create!(pet_id: @pet3.id, application_id: @application2.id)
+# @application1.pets << @pet1
+# @application1.pets << @pet2
+# @application2.pets << @pet2

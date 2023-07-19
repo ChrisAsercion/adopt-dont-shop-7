@@ -1,5 +1,4 @@
-<h3><%= @application.name %></h3>
-<p><%= @application.petscription%></p>
+<%= render "partials/form" %>
 
 <% @application.pets.each do |pet| %>
   <% pet_application = @application.pet_status(pet.id) %>

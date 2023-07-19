@@ -6,7 +6,7 @@ RSpec.describe "Admin Applications" do
     @pet = Pet.create!(name: "Scooby", age: 2, breed: "Great Dane", adoptable: true, shelter_id: @shelter.id)
     @pet2 = Pet.create!(name: "Scrappy", age: 1, breed: "Great Dane", adoptable: true, shelter_id: @shelter.id)
     @application_1 = Application.create!(name: "Topher B.", street_address: "101 W. East St.", city: "Los Angeles", state: "CA", zip: "90210", description: "I have home", petscription: "I have scooby snacks", status: "In Progress")
-    PetApplication.create!(pet_id: @pet.id, application_id: @application_1.id)
+    PetApplication.create!(status: "Pending", pet_id: @pet.id, application_id: @application_1.id)
     # PetApplication.create!(pet_id: @pet2.id, application_id: @application_1.id)
   end
 

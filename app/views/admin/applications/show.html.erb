@@ -1,14 +1,20 @@
 <h3><%= @application.name %></h3>
-  <% @application.pets.each do |pet|%>
-    <div id="pet-<%= pet.id %>">
-    <%= pet.name %>
-    <% if @pet_application.status == "Approved"%>
-      <span>Approved</span>
-    <% elsif @pet_appl%>
-    <span>Re</span>
+<p><%= @application.petscription%></p>
 
-      <%= button_to "Approve", "/admin/applications/#{@application.id}/pets/#{pet.id}", method: :patch, params:  %>
-      <%= button_to "Reject", "/admin/applications/#{@application.id}/pets/#{pet.id}", method: :patch %>
-    <% end %>
-    </div>
-  <% end %>
+<% @approved_pets.each do |pet| %>
+  <div id="approved-pet-<%= pet.id %>">
+    <%= pet.name %><span>Approved</span>
+  </div>
+<% end %>
+<% @rejected_pets.each do |pet| %>
+  <div id="rejected-pet-<%= pet.id %>">
+    <%= pet.name %><span>Rejected</span>
+  </div>
+<% end %>
+<% @pending_pets.each do |pet| %>
+  <div id="pending-pet-<%= pet.id %>">
+    <%= pet.name %>
+    <%= button_to "Approve", "/admin/applications/#{@application.id}/approve" %>
+    <%= button_to "Reject", "/admin/applications/#{@application.id}/reject" %>
+  </div>
+<% end %>

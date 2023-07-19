@@ -4,5 +4,6 @@ FactoryBot.define do
     name {Faker::Company.bs  }
     city { Faker::Address.city }
     rank { rand(1..5) }
+    pet { association :pet }
   end
 end

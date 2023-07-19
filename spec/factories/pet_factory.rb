@@ -4,6 +4,7 @@ FactoryBot.define do
     age { Faker::Creature::Dog.age.to_i }
     breed { Faker::Creature::Dog.breed }
     adoptable { Faker::Boolean.boolean }
-    shelter { association :shelter }
+    association :shelter 
+    association :pet_application 
   end
 end

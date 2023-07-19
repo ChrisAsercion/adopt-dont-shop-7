@@ -1,0 +1,32 @@
+<h3><%= @application.name %></h3>
+<p><%= @application.petscription%></p>
+
+<% @application.pets.each do |pet| %>
+  <% pet_application = @application.pet_status(pet.id) %>
+  <% if pet_application.pet_status == "Pending" %>
+      <div id="pet-<%= pet.id %>">
+      <p><%= pet.name %></p>
+      <p><%= form_with model: pet_application, url: "/admin/applications/#{pet_application.id}", local: true, method: :patch do |form| %>
+        <%= form.hidden_field :pet_status, value: "Approved" %>
+        <%= form.submit "Approve #{pet.name} for Adoption" %>
+      <% end %></p>
+      <p><%= form_with model: pet_application, url: "/admin/applications/#{pet_application.id}", local: true, method: :patch do |form| %>
+        <%= form.hidden_field :pet_status, value: "Rejected"  %>
+        <%= form.submit "Reject #{pet.name} for Adoption" %>
+      <% end %></p>
+      </div>
+    <% else %>
+        <h2>Approved Pets</h2>
+        <div id="pet-<%= pet.id %>">
+        <% if pet_application.pet_status == "Approved" %>
+          <p><%= "#{pet.name}"%> is approved for adoption!</p>
+        <% end %>
+      </div>
+      <h2>Rejected Pets</h2>
+      <div id="pet-<%= pet.id %>">
+        <% if pet_application.pet_status == "Rejected" %>
+          <p><%= "#{pet.name}"%> is rejected for adoption.</p>
+        <% end %>
+      </div>
+      <% end %>
+  <% end %>

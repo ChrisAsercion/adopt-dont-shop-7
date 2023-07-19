@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   
   get "/admin/applications", to: "admin/applications#index"
   get "/admin/applications/:id", to: "admin/applications#show"
-  patch "/admin/applications/:id/pets/:id", to: "admin/applications#update"
+  patch "/admin/applications/:id", to: "pet_applications#update"
 
   get "/pets", to: "pets#index"
   get "/pets/:id", to: "pets#show"

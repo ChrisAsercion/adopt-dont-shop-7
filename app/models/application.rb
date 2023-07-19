@@ -5,7 +5,7 @@ class Application < ApplicationRecord
   validates :name, :street_address, :city, :state, :zip, :description, presence: true
   attribute :petscription, :string
 
-  def pets_with_status
-    
+  def pet_status(pet_id)
+    pet_applications.where(pet_id: pet_id).first
   end
 end 

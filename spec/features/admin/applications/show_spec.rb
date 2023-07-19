@@ -29,13 +29,13 @@ RSpec.describe "Admin Applications" do
     it "admin can approve the same pet on two applications" do
       visit "/admin/applications/#{@application_1.id}"
       click_button("Approve")
-      save_and_open_page
+      # save_and_open_page
       expect(current_path).to eq("/admin/applications/#{@application_1.id}")
       expect(page).to have_content("Approved Pets")
 
       visit "/admin/applications/#{@application_2.id}"
       click_button("Approve")
-      save_and_open_page
+      # save_and_open_page
       expect(current_path).to eq("/admin/applications/#{@application_2.id}")
       expect(page).to have_content("Approved Pets")
 

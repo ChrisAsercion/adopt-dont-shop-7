@@ -19,10 +19,6 @@ class ApplicationsController < ApplicationController
     end
   end
 
-  # def edit
-  #   @application = Application.find(params[:id])
-  # end
-
   def update
     application = Application.find(params[:id])
     if application.update(application_params)

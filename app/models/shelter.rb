@@ -9,6 +9,14 @@ class Shelter < ApplicationRecord
     order(created_at: :desc)
   end
 
+  def self.order_by_name_desc
+    Shelter.find_by_sql("SELECT * FROM shelters ORDER BY name DESC")
+  end
+
+  def self.has_pending_pet_applications
+    Shelter.joins(pets: :applications).where(applications: { status: "Pending" }).distinct
+  end
+
   def self.order_by_number_of_pets
     select("shelters.*, count(pets.id) AS pets_count")
       .joins("LEFT OUTER JOIN pets ON pets.shelter_id = shelters.id")

@@ -32,13 +32,18 @@ RSpec.describe "Admin Applications" do
       # save_and_open_page
       expect(current_path).to eq("/admin/applications/#{@application_1.id}")
       expect(page).to have_content("Approved Pets")
+      expect(page).to have_content("Scooby")
 
       visit "/admin/applications/#{@application_2.id}"
       click_button("Approve")
       # save_and_open_page
       expect(current_path).to eq("/admin/applications/#{@application_2.id}")
       expect(page).to have_content("Approved Pets")
+      expect(page).to have_content("Scooby")
 
+      visit "/admin/applications/#{@application_1.id}"
+      # save_and_open_page
+      expect(page).to have_content("Scooby")
     end
   end
 end

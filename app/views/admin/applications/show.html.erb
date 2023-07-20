@@ -1,31 +1,39 @@
 <%= render "partials/form" %>
 
-<% @application.pets.each do |pet| %>
-  <% pet_application = @application.pet_status(pet.id) %>
-  <% if pet_application.pet_status == "Pending" %>
-      <div id="pet-<%= pet.id %>">
-      <p><%= pet.name %></p>
-      <p><%= form_with model: pet_application, url: "/admin/applications/#{pet_application.id}", local: true, method: :patch do |form| %>
-        <%= form.hidden_field :pet_status, value: "Approved" %>
-        <%= form.submit "Approve #{pet.name} for Adoption" %>
-      <% end %></p>
-      <p><%= form_with model: pet_application, url: "/admin/applications/#{pet_application.id}", local: true, method: :patch do |form| %>
-        <%= form.hidden_field :pet_status, value: "Rejected"  %>
-        <%= form.submit "Reject #{pet.name} for Adoption" %>
-      <% end %></p>
-      </div>
-    <% else %>
-        <h2>Approved Pets</h2>
-        <div id="pet-<%= pet.id %>">
-        <% if pet_application.pet_status == "Approved" %>
-          <p><%= "#{pet.name}"%> is approved for adoption!</p>
+<% if @pending_pets.any? %>
+  <h2>Pending Pets</h2>
+  <ul>
+    <% @pending_pets.each do |pet| %>
+      <li>
+        <%= pet.name %>
+        <%= form_with model: pet_application, url: "/admin/applications/#{pet_application.id}", local: true, method: :patch do |form| %>
+          <%= form.hidden_field :pet_status, value: "Approved" %>
+          <%= form.submit "Approve #{pet.name} for Adoption" %>
         <% end %>
-      </div>
-      <h2>Rejected Pets</h2>
-      <div id="pet-<%= pet.id %>">
-        <% if pet_application.pet_status == "Rejected" %>
-          <p><%= "#{pet.name}"%> is rejected for adoption.</p>
+
+        <%= form_with model: pet_application, url: "/admin/applications/#{pet_application.id}", local: true, method: :patch do |form| %>
+          <%= form.hidden_field :pet_status, value: "Rejected"  %>
+          <%= form.submit "Reject #{pet.name} for Adoption" %>
         <% end %>
-      </div>
-      <% end %>
-  <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @rejected_pets.any? %>
+  <h2>Rejected Pets</h2>
+  <ul>
+    <% @rejected_pets.each do |pet| %>
+      <li><%= pet.name %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @approved_pets.any? %>
+  <h2>Approved Pets</h2>
+  <ul>
+    <% @approved_pets.each do |pet| %>
+      <li><%= pet.name %></li>
+    <% end %>
+  </ul>
+<% end %>

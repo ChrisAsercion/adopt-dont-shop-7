@@ -10,14 +10,14 @@ class Application < ApplicationRecord
   end
 
   def pending_pets
-    pets.where(applications_pets: { pet_status: 'pending' })
+    pets.joins(:pet_applications).where(pet_applications: { pet_status: 'Pending' })
   end
 
   def approved_pets
-    pets.where(applications_pets: { pet_status: 'accepted' })
+    pets.joins(:pet_applications).where(pet_applications: { pet_status: 'Accepted' })
   end
 
   def rejected_pets
-    pets.where(applications_pets: { pet_status: 'rejected' })
+    pets.joins(:pet_applications).where(pet_applications: { pet_status: 'Rejected' })
   end
 end 
